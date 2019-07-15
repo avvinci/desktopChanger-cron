@@ -1,16 +1,18 @@
 import fetch from "node-fetch";
 import fs from "fs";
 
-// create a function that grabs a random image
+const imageWidth = 1080; //your desired image width in pixels
+const imageHeight = 1080; //desired image height in pixels
+let collectionID = 858095; //the collection ID from the unsplash
+let randomNumber = 1;
+
+let url = `https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomNumber}`;
 
 const fetchingData = async () => {
-  const res = await fetch("https://picsum.photos/200?random");
-  const date = Date.now();
-  console.log(date);
-  const dest = fs.createWriteStream(`./image-${date}.png`);
+  const res = await fetch(url);
+  let fileName = "image.jpg";
+  const dest = fs.createWriteStream(`./${fileName}`);
   res.body.pipe(dest);
 };
-
-// export the function so it can be used in the index.js file
 
 export default fetchingData;
