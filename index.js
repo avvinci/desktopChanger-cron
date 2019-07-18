@@ -11,5 +11,5 @@ cron.schedule("* * * * *", () => {
   (async () => {
     await wallpaper.set("image.jpg");
   })();
-  // console.log("..done");
+  console.log("..done");
 });
